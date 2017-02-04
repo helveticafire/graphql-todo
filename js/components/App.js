@@ -1,27 +1,30 @@
 import React from 'react';
 import Relay from 'react-relay';
-import { Button,
-         Grid,
-         Col,
-         Row,
-         PageHeader,
-         ListGroupItem,
-         ListGroup }
-         from 'react-bootstrap';
+import {
+  Col,
+  Row,
+  PageHeader,
+  ListGroup
+} from 'react-bootstrap';
+import TodoItem from './TodoItem';
+import TaskEntryForm from './TaskEntryForm';
 
 class App extends React.Component {
   render() {
     return (
-      <Col xs={8} xsOffset={2}>
-        <Row className="show-grid">
-        <PageHeader>Widget list</PageHeader>
-          <ListGroup>
-            {this.props.viewer.widgets.edges.map(edge =>
-              <ListGroupItem key={edge.node.id}>{edge.node.name} (ID: {edge.node.id})</ListGroupItem>
-            )}
-          </ListGroup>
-        </Row>
-      </Col>
+      <div className="container">
+        <Col xs={8} xsOffset={2}>
+          <Row className="show-grid">
+            <PageHeader>{this.props.viewer.widgets.edges.length} Tasks</PageHeader>
+            <ListGroup>
+              {this.props.viewer.widgets.edges.map(edge =>
+                <TodoItem key={edge.node.id} edge={edge} />
+              )}
+            </ListGroup>
+            <TaskEntryForm value=""/>
+          </Row>
+        </Col>
+      </div>
     );
   }
 }

@@ -28,38 +28,38 @@ type Query {
   viewer: User
 }
 
+# A shiny todo
+type Todo implements Node {
+  # The ID of an object
+  id: ID!
+
+  # The task of the todo
+  name: String
+}
+
+# A connection to a list of items.
+type TodoConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [TodoEdge]
+}
+
+# An edge in a connection.
+type TodoEdge {
+  # The item at the end of the edge
+  node: Todo
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
 # A person who uses our app
 type User implements Node {
   # The ID of an object
   id: ID!
 
-  # A person's collection of widgets
-  widgets(after: String, first: Int, before: String, last: Int): WidgetConnection
-}
-
-# A shiny widget
-type Widget implements Node {
-  # The ID of an object
-  id: ID!
-
-  # The name of the widget
-  name: String
-}
-
-# A connection to a list of items.
-type WidgetConnection {
-  # Information to aid in pagination.
-  pageInfo: PageInfo!
-
-  # A list of edges.
-  edges: [WidgetEdge]
-}
-
-# An edge in a connection.
-type WidgetEdge {
-  # The item at the end of the edge
-  node: Widget
-
-  # A cursor for use in pagination
-  cursor: String!
+  # A person's collection of todos
+  todos(after: String, first: Int, before: String, last: Int): TodoConnection
 }

@@ -15,9 +15,9 @@ class App extends React.Component {
       <div className="container">
         <Col xs={8} xsOffset={2}>
           <Row className="show-grid">
-            <PageHeader>{this.props.viewer.widgets.edges.length} Tasks</PageHeader>
+            <PageHeader>{this.props.viewer.todos.edges.length} Tasks</PageHeader>
             <ListGroup>
-              {this.props.viewer.widgets.edges.map(edge =>
+              {this.props.viewer.todos.edges.map(edge =>
                 <TodoItem key={edge.node.id} edge={edge} />
               )}
             </ListGroup>
@@ -33,7 +33,7 @@ export default Relay.createContainer(App, {
   fragments: {
     viewer: () => Relay.QL`
       fragment on User {
-        widgets(first: 10) {
+        todos(first: 10) {
           edges {
             node {
               id,

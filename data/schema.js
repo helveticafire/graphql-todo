@@ -32,11 +32,11 @@ import {
 import {
   // Import methods that your schema can use to interact with your database
   User,
-  Widget,
+  Todo,
   getUser,
   getViewer,
-  getWidget,
-  getWidgets,
+  getTodo,
+  getTodos,
 } from './database';
 
 /**
@@ -50,8 +50,8 @@ var {nodeInterface, nodeField} = nodeDefinitions(
     var {type, id} = fromGlobalId(globalId);
     if (type === 'User') {
       return getUser(id);
-    } else if (type === 'Widget') {
-      return getWidget(id);
+    } else if (type === 'Todo') {
+      return getTodo(id);
     } else {
       return null;
     }
@@ -59,8 +59,8 @@ var {nodeInterface, nodeField} = nodeDefinitions(
   (obj) => {
     if (obj instanceof User) {
       return userType;
-    } else if (obj instanceof Widget)  {
-      return widgetType;
+    } else if (obj instanceof Todo)  {
+      return todoType;
     } else {
       return null;
     }
@@ -76,25 +76,25 @@ var userType = new GraphQLObjectType({
   description: 'A person who uses our app',
   fields: () => ({
     id: globalIdField('User'),
-    widgets: {
-      type: widgetConnection,
-      description: 'A person\'s collection of widgets',
+    todos: {
+      type: todoConnection,
+      description: 'A person\'s collection of todos',
       args: connectionArgs,
-      resolve: (_, args) => connectionFromArray(getWidgets(), args),
+      resolve: (_, args) => connectionFromArray(getTodos(), args),
     },
   }),
   interfaces: [nodeInterface],
 });
 
-var widgetType = new GraphQLObjectType({
-  name: 'Widget',
-  description: 'A shiny widget',
+var todoType = new GraphQLObjectType({
+  name: 'Todo',
+  description: 'A shiny todo',
   fields: () => ({
-    id: globalIdField('Widget'),
+    id: globalIdField('Todo'),
     name: {
       type: GraphQLString,
-      description: 'The name of the widget',
-    },
+      description: 'The task of the todo',
+    }
   }),
   interfaces: [nodeInterface],
 });
@@ -102,8 +102,8 @@ var widgetType = new GraphQLObjectType({
 /**
  * Define your own connection types here
  */
-var {connectionType: widgetConnection} =
-  connectionDefinitions({name: 'Widget', nodeType: widgetType});
+var {connectionType: todoConnection} =
+  connectionDefinitions({name: 'Todo', nodeType: todoType});
 
 /**
  * This is the type that will be the root of our query,

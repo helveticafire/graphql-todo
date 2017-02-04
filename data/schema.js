@@ -94,6 +94,10 @@ var todoType = new GraphQLObjectType({
     name: {
       type: GraphQLString,
       description: 'The task of the todo',
+    },
+    createdAt: {
+      type: GraphQLFloat,
+      description: 'The time the todo was created at'
     }
   }),
   interfaces: [nodeInterface],

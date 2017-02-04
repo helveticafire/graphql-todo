@@ -35,6 +35,9 @@ type Todo implements Node {
 
   # The task of the todo
   name: String
+
+  # The time the todo was created at
+  createdAt: Float
 }
 
 # A connection to a list of items.

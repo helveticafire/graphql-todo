@@ -38,6 +38,7 @@ export default Relay.createContainer(App, {
             node {
               id,
               name,
+              createdAt,
             },
           },
         },

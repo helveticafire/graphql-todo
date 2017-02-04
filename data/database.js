@@ -19,6 +19,7 @@ var todos = ['What\'s-it', 'Who\'s-it', 'How\'s-it'].map((name, i) => {
   var todo = new Todo();
   todo.name = name;
   todo.id = `${i}`;
+  todo.createdAt = Date.now();
   return todo;
 });
 

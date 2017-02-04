@@ -91,7 +91,7 @@ var todoType = new GraphQLObjectType({
   description: 'A shiny todo',
   fields: () => ({
     id: globalIdField('Todo'),
-    name: {
+    text: {
       type: GraphQLString,
       description: 'The task of the todo',
     },

@@ -34,7 +34,7 @@ type Todo implements Node {
   id: ID!
 
   # The task of the todo
-  name: String
+  text: String
 
   # The time the todo was created at
   createdAt: Float

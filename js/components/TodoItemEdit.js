@@ -6,7 +6,7 @@ export default class TodoItemEdit extends React.Component {
   render() {
     return (
         <ListGroupItem key={this.props.edge.node.id}>
-          <TaskEntryForm value={this.props.edge.node.name} handleEdit={this.props.handleEdit}/>
+          <TaskEntryForm value={this.props.edge.node.text} handleEdit={this.props.handleEdit}/>
         </ListGroupItem>
       );
   }

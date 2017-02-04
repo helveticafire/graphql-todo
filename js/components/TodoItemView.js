@@ -8,7 +8,7 @@ export default class TodoItemView extends React.Component {
   render() {
     return (
         <ListGroupItem key={this.props.edge.node.id}>
-          {this.props.edge.node.name}
+          {this.props.edge.node.text}
           (ID: {this.props.edge.node.id})
           [{new Date(this.props.edge.node.createdAt).toLocaleString()}]
 

@@ -37,7 +37,7 @@ export default Relay.createContainer(App, {
           edges {
             node {
               id,
-              name,
+              text,
               createdAt,
             },
           },

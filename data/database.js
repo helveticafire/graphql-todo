@@ -15,9 +15,9 @@ class Todo {}
 var viewer = new User();
 viewer.id = '1';
 viewer.name = 'Anonymous';
-var todos = ['What\'s-it', 'Who\'s-it', 'How\'s-it'].map((name, i) => {
+var todos = ['What\'s-it', 'Who\'s-it', 'How\'s-it'].map((text, i) => {
   var todo = new Todo();
-  todo.name = name;
+  todo.text = text;
   todo.id = `${i}`;
   todo.createdAt = Date.now();
   return todo;
